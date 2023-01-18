@@ -15,6 +15,7 @@ namespace Com.ArmasJorge.BattleKnights
 
         [Tooltip("The Beams GameObject to control")]
         [SerializeField]
+        public int puntos = 0;
 
         public float Health = 1f;
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
@@ -22,6 +23,7 @@ namespace Com.ArmasJorge.BattleKnights
         [Tooltip("The Player's UI GameObject Prefab")]
         [SerializeField]
         public GameObject PlayerUiPrefab;
+        public GameObject Puntos;
 
         #endregion
 
@@ -76,6 +78,15 @@ namespace Com.ArmasJorge.BattleKnights
             {
                 Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
             }
+            if (Puntos != null)
+            {
+                GameObject _Puntos = Instantiate(Puntos);
+                _Puntos.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+            }
+            else
+            {
+                Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
+            }
         }
 
         void Update()
@@ -122,6 +133,12 @@ namespace Com.ArmasJorge.BattleKnights
             }
             GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
             _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+            if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
+            {
+                transform.position = new Vector3(0f, 5f, 0f);
+            }
+            GameObject _Puntos = Instantiate(this.PlayerUiPrefab);
+            _Puntos.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
 
         }
 
@@ -158,7 +175,13 @@ namespace Com.ArmasJorge.BattleKnights
                 this.Health = (float)stream.ReceiveNext();
             }
         }
-       
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.tag == "espada1")
+            {
+                puntos += 10;
+            }
+        }
     #endregion
 }
 }

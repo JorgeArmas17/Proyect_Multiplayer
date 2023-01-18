@@ -2427,6 +2427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 1
   PlayerUiPrefab: {fileID: 170056, guid: e41946a981c3b444a84d15eb7c608ca4, type: 3}
+  Puntos: {fileID: 5398589721920979857, guid: 78c6f2664e84a254d9a20a4493df7b02, type: 3}
 --- !u!114 &7929113999515667769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2442,7 +2443,6 @@ MonoBehaviour:
   rigidbody: {fileID: 7929113999515667773}
   velocidadMovimiento: 5
   velocidadRotacion: 200
-  impPuntos: {fileID: 6755088953996675183, guid: 4a4b6b3f9b0dc5443ac6410a7b3186ea, type: 3}
   fuerzaSalto: 150
   animator: {fileID: 0}
   x: 0

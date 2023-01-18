@@ -7,17 +7,15 @@ using Com.ArmasJorge.BattleKnights;
 
 namespace Com.ArmasJorge.BattleKnights
 {
-    public class PlayerUI : MonoBehaviour
+    public class Puntos : MonoBehaviour
     {
         #region Private Fields
 
         [Tooltip("UI Text to display Player's Name")]
         [SerializeField]
-        private Text playerNameText;
+        public static int puntos = 0;
+        public Text impPuntos;
 
-        [Tooltip("UI Slider to display Player's Health")]
-        [SerializeField]
-        private Slider playerHealthSlider;
         private PlayerManager target;
         [Tooltip("Pixel offset from the player target")]
         [SerializeField]
@@ -37,11 +35,11 @@ namespace Com.ArmasJorge.BattleKnights
                 Destroy(this.gameObject);
                 return;
             }
-            if (playerHealthSlider != null)
+            if (puntos != null)
             {
-                playerHealthSlider.value = target.Health;
+                impPuntos.text = target.puntos.ToString();
             }
-            
+
         }
         void Awake()
         {
@@ -80,10 +78,7 @@ namespace Com.ArmasJorge.BattleKnights
             {
                 characterControllerHeight = characterController.height;
             }
-            if (playerNameText != null)
-            {
-                playerNameText.text = target.photonView.Owner.NickName;
-            }
+            
         }
         #endregion
 

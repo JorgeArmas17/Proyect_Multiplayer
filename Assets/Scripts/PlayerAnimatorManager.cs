@@ -16,8 +16,6 @@ namespace Com.ArmasJorge.BattleKnights
         public float velocidadRotacion = 200.0f;
         private bool salto = false;
         private bool ataque = false;
-        public Text impPuntos;       
-        private static int puntos = 0;
 
         public float fuerzaSalto;
         public Animator animator;
@@ -80,11 +78,6 @@ namespace Com.ArmasJorge.BattleKnights
                 salto = false;
             }
            
-            if (collision.gameObject.tag == "espada1")
-            {
-                puntos += 10;
-                impPuntos.text = puntos.ToString();
-            }
             if (collision.gameObject.tag == "espadaEspecial")
             {
                 //SceneManager.LoadScene(4);
